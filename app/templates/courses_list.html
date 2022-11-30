@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<center>
+<h1 class="text-center mb-5 mt-5">Все курсы!</h1>
+</center>
+
+
+<th>  <a class="btn btn-dark" href="{{ url_for('course_create') }}">Добавить курс</a></th>
+<th>  <a class="btn btn-success" href="{{ url_for('student_create') }}">Создать студента</a></th>
+
+<table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Название курса</th>
+          <th scope="col">Длительность</th>
+          <th scope="col">Действие</th>
+        </tr>
+      </thead>
+      {% for course in courses %}
+      <tbody>
+        <tr>
+          <th scope="row">{{ course.id }}</th>
+          <td>{{ course.name }}</td>
+          <td>{{ course.time }}</td>
+          <td>
+            <a class="btn btn-outline" href="{{ url_for('course_detail', id=course.id  ) }}">Подробнее</a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+{% endblock content %}

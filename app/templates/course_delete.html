@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Удалить курс</h1>
+
+<form method="POST">
+   <p>Вы действительно хотите удалить курс? </p>
+   <p>ID = {{ course.id }}</p>
+
+   <p>Название = {{ course.name }}</p>
+      <button type="submit" class="btn btn-danger">Удалить</button>
+
+
+</form>
+
+{% endblock content %}

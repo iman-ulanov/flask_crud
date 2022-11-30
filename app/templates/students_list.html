@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="text-center mb-5 mt-5">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  </head>
+  <body>
+  {% if current_user.is_authenticated %}
+  <p><strong> Вы авторизованы как-{{ current_user }} </strong></p>
+  <a style="background-color:#8FBC8F" class="btn btn-primary" href="{{ url_for('student_create') }}">Создать нового студента</a>
+  <a class="btn btn-dark" href="{{ url_for('course_create') }}">Добавить курс</a>
+  <a class="btn btn-dark" href="{{ url_for('courses_list') }}">Список все курсов</a>
+  <a class="btn btn-warning" href="{{ url_for('logout') }}">Выйти из аккаунта</a>
+
+  {% else %}
+  <p class="text-right mb-2 mt-2" style="color:#8FBC8F"><strong> просмотр страницы в режиме гостя </strong></p>
+  <p class="text-right"><a class="btn btn-primary" href="{{ url_for('login') }}">Войти</a> или <a class="btn btn-primary" href="{{ url_for('register') }}">Зарегистрироваться</a></p>
+  {% endif %}
+ </div>
+<center>
+<h1 >Список студентов</h1>
+</center>
+
+<table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">ФИО</th>
+          <th scope="col">Дата рождения</th>
+          <th scope="col">Курс</th>
+          <th scope="col">Действие</th>
+        </tr>
+      </thead>
+      {% for student in students %}
+      <tbody>
+        <tr>
+          <th scope="row">{{ student.id }}</th>
+          <td>{{ student.name }}</td>
+          <td>{{ student.birth_date }}</td>
+          <td>{{ student.course }}</td>
+          <td>
+            <a class="btn btn-outline" href="{{ url_for('student_detail', id=student.id  ) }}">Подробнее</a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+{% endblock content %}

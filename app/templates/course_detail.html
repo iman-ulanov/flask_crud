@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3>{{ course.name }}</h3>
+<p>{{ course.time }}</p>
+
+
+<p>
+    <a class="btn btn-warning" href="{{ url_for('course_update', id=course.id) }}">Изменить курс</a>
+</p>
+<p>
+    <a class="btn btn-danger" href="{{ url_for('course_delete', id=course.id) }}">Удалить данные</a>
+</p>
+
+{% endblock content %}

@@ -1,0 +1,5 @@
+.idea/
+venv
+HW_11_ИманУланов.zip
+app/__pycache__
+migrations/__pycache__
